@@ -63,22 +63,38 @@
         private string ConpareList(List<List<string>> file1Data, List<List<string>> file2Data)
         {
             StringBuilder builder = new StringBuilder();
+
+            int targetCol = int.Parse(this.settings.DiffMode.PrimaryKeyCols.First());
             file1Data.ForEach(file1Item =>
             {
+                builder.AppendLine($"{string.Join(this.settings.DiffMode.separator, file1Item)}");
                 file2Data.ForEach(file2Item =>
                 {
-                    if (file1Item[0] == file2Item[0])
+                    //比較する行の検索
+                    if (this.CheckCols(file1Item, file2Item,this.settings.DiffMode.PrimaryKeyCols))
                     {
-                        if (file1Item[1] != file2Item[1])
+                        //比較実行
+                        if (this.CheckCols(file1Item, file2Item, this.settings.DiffMode.ConpareTargetCols)==false)
                         {
-                            builder.AppendLine($"★{string.Join(',', file2Item)}");
+                            //指定した値と一致しないときは☆をつけて表示する
+                            builder.AppendLine($"★{string.Join(this.settings.DiffMode.separator, file2Item)}");
                         }
                     }
                 });
-                builder.AppendLine($"{string.Join(',', file1Item)}");
             });
-
             return builder.ToString();
+        }
+
+        private bool CheckCols(List<string> file1,List<string> file2,string[] patterns)
+        {
+            bool result = false;
+            foreach (var colStr in patterns)
+            {
+                int col = int.Parse(colStr)-1;
+                result = file1[col] == file2[col];
+                if (result == false) break;
+            }
+            return result;
         }
 
         #endregion

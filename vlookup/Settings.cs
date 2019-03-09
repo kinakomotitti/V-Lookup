@@ -34,6 +34,8 @@
         public string TargetFilePath { get; set; }
         public string[] PrimaryKeyCols { get; set; }
         public string[] ConpareTargetCols { get; set; }
+        public string separator { get; set; } = ",";
+
     }
 
 }

@@ -37,7 +37,8 @@ namespace vlookup
                     TargetFilePath = "./../../../../SampleData/file2.csv",
                     PrimaryKeyCols="1".Split(","),
                     ConpareTargetCols="2".Split(",")
-                } 
+                } ,
+                NormalMode=null
             };
 
             var result = ProcessManager.CreateProcessExecutor(settings).Execute();
