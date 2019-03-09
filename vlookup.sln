@@ -5,6 +5,12 @@ VisualStudioVersion = 15.0.28307.438
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vlookup", "vlookup\vlookup.csproj", "{0B355B7D-32BA-453F-9B76-97E70A527D68}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SampleData", "SampleData", "{2A7DC79E-5A99-42BA-B7CF-3A6411207ACD}"
+	ProjectSection(SolutionItems) = preProject
+		SampleData\file1.csv = SampleData\file1.csv
+		SampleData\file2.csv = SampleData\file2.csv
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

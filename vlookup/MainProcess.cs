@@ -1,32 +1,68 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-
-namespace vlookup
+﻿namespace vlookup
 {
+    #region using
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+    using System.Text;
+    #endregion
+
+    /// <summary>
+    /// MainProcess
+    /// </summary>
     internal class MainProcess
     {
+        /// <summary>
+        /// Settings
+        /// </summary>
+        internal Settings settings { get; set; } = new Settings();
 
-        internal string DiffFiles(string file1Path, string file2Path)
+        #region コンストラクタ
+
+        /// <summary>
+        /// start with custom settings.
+        /// </summary>
+        /// <param name="settings"></param>
+        internal MainProcess(Settings settings)
         {
-            var file1Data = this.ConvertInputDataToObject(file1Path);
-            var file2Data = this.ConvertInputDataToObject(file2Path);
+            this.settings = settings;
+        }
 
+        #endregion
+
+        #region Main Method (DiffFiles)
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="file1Path"></param>
+        /// <param name="file2Path"></param>
+        /// <returns></returns>
+        internal string DiffFiles()
+        {
+            //read files
+            var file1Data = this.ConvertInputDataToObject(this.settings.TargetFilePath);
+            var file2Data = this.ConvertInputDataToObject(this.settings.DiffMode.TargetFilePath);
+
+            //copare data and return result.
             return this.ConpareList(file1Data, file2Data);
         }
+
+        #endregion
+
+        #region privateMethod
 
         private List<List<string>> ConvertInputDataToObject(string inputDataPath)
         {
             var data = new List<List<string>>();
-            File.ReadAllLines(inputDataPath)
+            File.ReadAllLines(inputDataPath, this.settings.Encoding)
                .ToList<string>()
                .ForEach(item =>
                {
                    var row = new List<string>();
-                   item.Split(',').ToList().ForEach(param => row.Add(item));
-                   data.Add(new List<string>());
+                   item.Split(',').ToList().ForEach(param => row.Add(param));
+                   data.Add(row);
                });
             return data;
         }
@@ -41,17 +77,18 @@ namespace vlookup
                  {
                      if (file1Item[0] == file2Item[0])
                      {
-                         if (file1Item[1] == file2Item[1])
+                         if (file1Item[1] != file2Item[1])
                          {
-                             builder.Append($"☆{string.Join(',', file1Data)}");
-                             builder.Append($"★{string.Join(',', file2Data)}");
+                             builder.AppendLine($"★{string.Join(',', file2Item)}");
                          }
                      }
                  });
-                 builder.Append($"{string.Join(',', file1Data)}");
+                 builder.AppendLine($"{string.Join(',', file1Item)}");
              });
 
             return builder.ToString();
         }
+
+        #endregion
     }
 }
