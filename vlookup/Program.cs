@@ -6,7 +6,9 @@ namespace vlookup
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            MainProcess process = new MainProcess();
+            var result = process.DiffFiles("./file1.csv", "./file2.csv");
+            Console.Write(result);
         }
     }
 }
