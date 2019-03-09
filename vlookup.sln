@@ -9,7 +9,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SampleData", "SampleData", 
 	ProjectSection(SolutionItems) = preProject
 		SampleData\file1.csv = SampleData\file1.csv
 		SampleData\file2.csv = SampleData\file2.csv
+		SampleData\typeA-1.csv = SampleData\typeA-1.csv
+		SampleData\typeA-2.csv = SampleData\typeA-2.csv
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProject1", "UnitTestProject1\UnitTestProject1.csproj", "{F3B017D4-4146-46A7-9987-AA928B08FC14}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,10 @@ Global
 		{0B355B7D-32BA-453F-9B76-97E70A527D68}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B355B7D-32BA-453F-9B76-97E70A527D68}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B355B7D-32BA-453F-9B76-97E70A527D68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3B017D4-4146-46A7-9987-AA928B08FC14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3B017D4-4146-46A7-9987-AA928B08FC14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3B017D4-4146-46A7-9987-AA928B08FC14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3B017D4-4146-46A7-9987-AA928B08FC14}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

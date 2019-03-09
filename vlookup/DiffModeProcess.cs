@@ -12,11 +12,11 @@
     /// <summary>
     /// DiffModeProcess
     /// </summary>
-    internal class DiffModeProcess: BaseProcess
+    public class DiffModeProcess: BaseProcess
     {
         #region コンストラクタ
 
-        internal DiffModeProcess(Settings settings)
+        public DiffModeProcess(Settings settings)
         {
             base.settings = settings;
         }
@@ -26,12 +26,12 @@
         #region Main Method (DiffFiles)
 
         /// <summary>
-        /// 
+        /// 差分検出処理実行
         /// </summary>
         /// <param name="file1Path"></param>
         /// <param name="file2Path"></param>
         /// <returns></returns>
-        internal override string Execute()
+        public override string Execute()
         {
             //read files
             var file1Data = this.ConvertInputDataToObject(this.settings.TargetFilePath);

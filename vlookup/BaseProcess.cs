@@ -11,14 +11,14 @@
     /// <summary>
     /// MainProcess
     /// </summary>
-    internal abstract class BaseProcess
+    public abstract class BaseProcess
     {
         /// <summary>
         /// Settings
         /// </summary>
-        internal Settings settings { get; set; } = new Settings();
+        public Settings settings { get; set; } = new Settings();
 
 
-        internal abstract string Execute();
+        public abstract string Execute();
     }
 }

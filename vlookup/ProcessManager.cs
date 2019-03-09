@@ -4,9 +4,9 @@ using System.Text;
 
 namespace vlookup
 {
-    internal static class ProcessManager
+    public static class ProcessManager
     {
-        internal static BaseProcess CreateProcessExecutor(Settings settings)
+        public static BaseProcess CreateProcessExecutor(Settings settings)
         {
             BaseProcess process;
 
