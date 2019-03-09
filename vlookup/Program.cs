@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 namespace vlookup
 {
@@ -28,17 +29,19 @@ namespace vlookup
         /// <param name="args"></param>
         static void Main(string[] args)
         {
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
             //TODO 設定読み取り処理を別クラスに分割。
             Settings settings = new Settings()
             {
-                TargetFilePath= "./../../../../SampleData/file1.csv",
+                TargetFilePath = "./../../../../SampleData/file1.csv",
                 DiffMode = new DiffMode()
                 {
                     TargetFilePath = "./../../../../SampleData/file2.csv",
-                    PrimaryKeyCols="1".Split(","),
-                    ConpareTargetCols="2".Split(",")
-                } ,
-                NormalMode=null
+                    PrimaryKeyCols = "1".Split(","),
+                    ConpareTargetCols = "2".Split(",")
+                },
+                NormalMode = null,
+                Encoding = Encoding.GetEncoding(932)
             };
 
             var result = ProcessManager.CreateProcessExecutor(settings).Execute();

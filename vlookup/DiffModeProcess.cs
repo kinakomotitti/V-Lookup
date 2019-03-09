@@ -12,7 +12,7 @@
     /// <summary>
     /// DiffModeProcess
     /// </summary>
-    public class DiffModeProcess: BaseProcess
+    public class DiffModeProcess : BaseProcess
     {
         #region コンストラクタ
 
@@ -67,30 +67,34 @@
             int targetCol = int.Parse(this.settings.DiffMode.PrimaryKeyCols.First());
             file1Data.ForEach(file1Item =>
             {
-                builder.AppendLine($"{string.Join(this.settings.DiffMode.separator, file1Item)}");
+                bool iscollision = false;
                 file2Data.ForEach(file2Item =>
                 {
                     //比較する行の検索
-                    if (this.CheckCols(file1Item, file2Item,this.settings.DiffMode.PrimaryKeyCols))
+                    if (this.CheckCols(file1Item, file2Item, this.settings.DiffMode.PrimaryKeyCols))
                     {
                         //比較実行
-                        if (this.CheckCols(file1Item, file2Item, this.settings.DiffMode.ConpareTargetCols)==false)
+                        if (this.CheckCols(file1Item, file2Item, this.settings.DiffMode.ConpareTargetCols) == false)
                         {
                             //指定した値と一致しないときは☆をつけて表示する
                             builder.AppendLine($"★{string.Join(this.settings.DiffMode.separator, file2Item)}");
+                            builder.AppendLine($"☆{string.Join(this.settings.DiffMode.separator, file1Item)}");
+                            iscollision = true;
                         }
                     }
                 });
+                if (iscollision == false)
+                    builder.AppendLine($"{string.Join(this.settings.DiffMode.separator, file1Item)}");
             });
             return builder.ToString();
         }
 
-        private bool CheckCols(List<string> file1,List<string> file2,string[] patterns)
+        private bool CheckCols(List<string> file1, List<string> file2, string[] patterns)
         {
             bool result = false;
             foreach (var colStr in patterns)
             {
-                int col = int.Parse(colStr)-1;
+                int col = int.Parse(colStr) - 1;
                 result = file1[col] == file2[col];
                 if (result == false) break;
             }
