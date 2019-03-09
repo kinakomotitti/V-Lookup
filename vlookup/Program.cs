@@ -28,6 +28,7 @@ namespace vlookup
         /// <param name="args"></param>
         static void Main(string[] args)
         {
+            //TODO 設定読み取り処理を別クラスに分割。
             Settings settings = new Settings()
             {
                 TargetFilePath= "./../../../../SampleData/file1.csv",
@@ -39,8 +40,7 @@ namespace vlookup
                 } 
             };
 
-            MainProcess process = new MainProcess(settings);
-            var result = process.DiffFiles();
+            var result = ProcessManager.CreateProcessExecutor(settings).Execute();
             Console.Write(result);
         }
     }

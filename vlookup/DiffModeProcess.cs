@@ -8,25 +8,17 @@
     using System.Text;
     #endregion
 
-    /// <summary>
-    /// MainProcess
-    /// </summary>
-    internal class MainProcess
-    {
-        /// <summary>
-        /// Settings
-        /// </summary>
-        internal Settings settings { get; set; } = new Settings();
 
+    /// <summary>
+    /// DiffModeProcess
+    /// </summary>
+    internal class DiffModeProcess: BaseProcess
+    {
         #region コンストラクタ
 
-        /// <summary>
-        /// start with custom settings.
-        /// </summary>
-        /// <param name="settings"></param>
-        internal MainProcess(Settings settings)
+        internal DiffModeProcess(Settings settings)
         {
-            this.settings = settings;
+            base.settings = settings;
         }
 
         #endregion
@@ -39,7 +31,7 @@
         /// <param name="file1Path"></param>
         /// <param name="file2Path"></param>
         /// <returns></returns>
-        internal string DiffFiles()
+        internal override string Execute()
         {
             //read files
             var file1Data = this.ConvertInputDataToObject(this.settings.TargetFilePath);
@@ -72,19 +64,19 @@
         {
             StringBuilder builder = new StringBuilder();
             file1Data.ForEach(file1Item =>
-             {
-                 file2Data.ForEach(file2Item =>
-                 {
-                     if (file1Item[0] == file2Item[0])
-                     {
-                         if (file1Item[1] != file2Item[1])
-                         {
-                             builder.AppendLine($"★{string.Join(',', file2Item)}");
-                         }
-                     }
-                 });
-                 builder.AppendLine($"{string.Join(',', file1Item)}");
-             });
+            {
+                file2Data.ForEach(file2Item =>
+                {
+                    if (file1Item[0] == file2Item[0])
+                    {
+                        if (file1Item[1] != file2Item[1])
+                        {
+                            builder.AppendLine($"★{string.Join(',', file2Item)}");
+                        }
+                    }
+                });
+                builder.AppendLine($"{string.Join(',', file1Item)}");
+            });
 
             return builder.ToString();
         }

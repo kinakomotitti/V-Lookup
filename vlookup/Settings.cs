@@ -18,9 +18,9 @@
 
         public string TargetFilePath { get; set; }
 
-        public NormalMode NormalMode { get; set; } = new NormalMode();
+        public NormalMode NormalMode { get; set; } = null;
 
-        public DiffMode DiffMode { get; set; } = new DiffMode();
+        public DiffMode DiffMode { get; set; } = null;
 
     }
 
