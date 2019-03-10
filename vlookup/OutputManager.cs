@@ -23,6 +23,9 @@
 
         public void Output()
         {
+            Console.WriteLine($"{this.settings.ResultSummry}\r\n");
+            
+
             switch (this.settings.OutputMethod.ToLower())
             {
                 case "file":
@@ -31,6 +34,7 @@
 
                 case "console":
                 default:
+                    Console.WriteLine($"{this.settings.ResultString}\r\n");
                     break;
             }
         }
