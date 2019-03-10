@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "vlookup": {
+      "commandName": "Project",
+      "commandLineArgs": "C:\\\\Users\\\\sugane\\\\Source\\\\repos\\\\vlookup\\\\SampleData\\\\file1.csv -d 1,3,C:\\\\Users\\\\sugane\\\\Source\\\\repos\\\\vlookup\\\\SampleData\\\\file1.csv\""
+    }
+  }
+}
