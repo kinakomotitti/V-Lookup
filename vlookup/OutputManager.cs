@@ -21,11 +21,12 @@
             this.settings = settings;
         }
 
+        #region 出力処理
+
         public void Output()
         {
             Console.WriteLine($"{this.settings.ResultSummry}\r\n");
             
-
             switch (this.settings.OutputMethod.ToLower())
             {
                 case "file":
@@ -38,5 +39,7 @@
                     break;
             }
         }
+
+        #endregion
     }
 }

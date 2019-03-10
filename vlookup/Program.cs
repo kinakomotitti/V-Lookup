@@ -17,21 +17,21 @@
         /// filepath 必須。操作対象のファイルパス。
         /// 
         /// オプションコマンド。実行には、1つのオプションの選択が必要。
-        /// -n --normal 検索値,範囲,列番号[,検索方法]
+        /// -n --normal 検索値,列番号[,範囲]
         /// ノーマルモード。指定された値が含まれる行を検索し、出力する。
         ///     検索値・・・必須。検索対象の文字列。
         ///     列番号・・・必須。検索対象の列番号。セミコロン区切りで複数指定可能。
         ///     [範囲]・・・省略可。指定範囲の行数で検索。規定は、０～最終行。
         /// 
-        /// -d --diff 列番号,比較対象のfilePath[,区切り文字列]
+        /// -d --diff 主キー列,列番号,比較対象のfilePath
         /// ファイル比較モード。
         ///     主キー列・・・・・・・・必須。比較対象の行を特定するためのキー列。カンマ区切りで複数指定可能。
         ///     列番号・・・・・・・・・必須。比較対象の列。セミコロン区切りで複数指定可能。
         ///     比較対象のfilePath・・・必須。比較対象のファイルパス。
         ///     
         /// -e --encoding 
-        ///     デフォルト：utf-8
-        ///     Shift-JIS
+        ///     指定可能エンコーディング方式：utf-8(default)、Shift-JIS
+        ///                
         /// </summary>
         /// <param name="args"></param>
         static void Main(string[] args)
@@ -45,8 +45,11 @@
                 Console.Write(ex.ToString());
             }
         }
- 
 
+        /// <summary>
+        /// メイン処理
+        /// </summary>
+        /// <param name="args"></param>
         void MainCore(string[] args)
         {
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
@@ -64,6 +67,11 @@
             
         }
 
+        /// <summary>
+        /// 引数チェック＋Settingインスタンスの作成
+        /// </summary>
+        /// <param name="args"></param>
+        /// <returns></returns>
         Settings CreateSettings(string[] args)
         {
             var settings = new Settings();
@@ -103,6 +111,11 @@
             return settings;
         }
 
+        /// <summary>
+        /// DiffMode用のSettingインスタンスの作成処理
+        /// </summary>
+        /// <param name="settings"></param>
+        /// <param name="param"></param>
         void DiffParam(Settings settings, string param)
         {
             var paramList = param.Split(",");
@@ -118,11 +131,40 @@
             };
         }
 
+        /// <summary>
+        /// 利用方法表示
+        /// </summary>
         void ShowHelp()
         {
             StringBuilder builder = new StringBuilder();
-            builder.AppendLine("いずれHelp情報書きます。");
-            builder.AppendLine("-d --diff 列番号,比較対象のfilePath[,区切り文字列]");
+            builder.AppendLine("usage: dotnet vlookup.dll TargetFilePath [--help]");
+            builder.AppendLine("\t  [--normal 検索値,範囲,列番号[,検索方法]]");
+            builder.AppendLine("\t  [--diff 列番号,比較対象のfilePath[,区切り文字列]]");
+            builder.AppendLine("\t  [--encoding エンコーディング方式]");
+            builder.AppendLine("\t  [--output 出力先]");
+            builder.AppendLine("");
+            builder.AppendLine("--help, ヘルプ情報を表示します。");
+            builder.AppendLine("");
+            builder.AppendLine("--normal -n, 検索値,列番号[,範囲]]");
+            builder.AppendLine("\t 検索値 \t 検索対象の文字列を指定します");
+            builder.AppendLine("\t 列番号 \t 検索値を検索する範囲（列）を指定します");
+            builder.AppendLine("\t 範囲 　\t 省略可。検索値を検索する範囲（行）を指定します");
+            builder.AppendLine("\t【例】");
+            builder.AppendLine("\t -n Sample,1　　　・・・指定されたファイルに含まれるすべての行の中で、1列目にSampleがある行を抽出します。");
+            builder.AppendLine("\t -n Sample,1,1;5　・・・指定されたファイルの1行目～5行目の中、1列目にSampleがある行を抽出します。");
+            builder.AppendLine("");
+            builder.AppendLine("--diff -d, 主キー列,列番号,比較対象のfilePath");
+            builder.AppendLine("\t 主キー列 \t 行を特定することができる特徴のある列を指定します。");
+            builder.AppendLine("\t 列番号　 \t 主キー列で特定した行のうち、どの列の値を比較するかを選択します。デフォルトでは、すべての列を比較します。");
+            builder.AppendLine("\t 比較対象のfilePath");
+            builder.AppendLine("\t【例】");
+            builder.AppendLine("\t -d 1,2,Sample.csv　・・・共通引数で指定されたファイルと、Sample.csvのうち、1列目が同じ値の行の2列目の値を比較します。");
+            builder.AppendLine("\t -d 1;2;3;4,5;6;7,Sample.csv　・・・共通引数で指定されたファイルと、Sample.csvのうち、1~4列目が同じ値の行の5~7列目の値を比較します。");
+            builder.AppendLine("");
+            builder.AppendLine("--encoding　-e,  UTF-8 | Shift-JIS");
+            builder.AppendLine("");
+            builder.AppendLine("--output -o, console | file");
+
             Console.Write(builder.ToString());
         }
     }
