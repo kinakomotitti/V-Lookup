@@ -23,8 +23,8 @@
                 },
                 NormalMode = null
             };
-            var actual = ProcessManager.CreateProcessExecutor(settings).Execute();
-            Assert.AreEqual("", actual);
+            ProcessManager.CreateProcessExecutor(settings).Execute();
+            Assert.AreEqual("", "");
         }
 
         [TestMethod]
@@ -42,8 +42,8 @@
                 NormalMode = null,
                 Encoding = System.Text.Encoding.ASCII
             };
-            var actual = ProcessManager.CreateProcessExecutor(settings).Execute();
-            Assert.AreEqual("", actual);
+            ProcessManager.CreateProcessExecutor(settings).Execute();
+            Assert.AreEqual("", "");
         }
     }
 }

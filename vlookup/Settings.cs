@@ -11,6 +11,8 @@
     /// </summary>
     public class Settings
     {
+        #region CommonSettings
+
         /// <summary>
         /// Encoding
         /// </summary>
@@ -18,10 +20,19 @@
 
         public string TargetFilePath { get; set; }
 
+        public string OutputMethod { get; set; } = "Console";
+
+        public string ResultString { get; set; }
+
+        public string ResultSummry { get; set; }
+
+        #endregion
+
         public NormalMode NormalMode { get; set; } = null;
 
         public DiffMode DiffMode { get; set; } = null;
 
+        
     }
 
     public class NormalMode
@@ -35,7 +46,6 @@
         public string[] PrimaryKeyCols { get; set; }
         public string[] ConpareTargetCols { get; set; }
         public string separator { get; set; } = ",";
-
     }
 
 }

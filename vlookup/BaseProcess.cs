@@ -19,6 +19,6 @@
         public Settings settings { get; set; } = new Settings();
 
 
-        public abstract string Execute();
+        public abstract void Execute();
     }
 }

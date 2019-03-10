@@ -1,9 +1,11 @@
-﻿using System;
-using System.IO;
-using System.Text;
-
-namespace vlookup
+﻿namespace vlookup
 {
+    #region using
+    using System;
+    using System.IO;
+    using System.Text;
+    #endregion
+
     /// <summary>
     /// Program
     /// </summary>
@@ -26,52 +28,73 @@ namespace vlookup
         ///     主キー列・・・・・・・・必須。比較対象の行を特定するためのキー列。カンマ区切りで複数指定可能。
         ///     列番号・・・・・・・・・必須。比較対象の列。セミコロン区切りで複数指定可能。
         ///     比較対象のfilePath・・・必須。比較対象のファイルパス。
+        ///     
+        /// -e --encoding 
+        ///     デフォルト：utf-8
+        ///     Shift-JIS
         /// </summary>
         /// <param name="args"></param>
         static void Main(string[] args)
         {
+            try
+            {
+                new Program().MainCore(args);
+            }
+            catch (Exception ex)
+            {
+                Console.Write(ex.ToString());
+            }
+        }
+ 
+
+        void MainCore(string[] args)
+        {
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 
-            var settings = Program.CreateSettings(args);
+            var settings = this.CreateSettings(args);
             if (settings == null)
             {
-                Program.ShowHelp();
+                this.ShowHelp();
                 return;
             }
 
+            ProcessManager.CreateProcessExecutor(settings).Execute();
 
-            var result = ProcessManager.CreateProcessExecutor(settings).Execute();
-            Console.Write(result);
+            OutputManager.CreateOutputExecutor(settings).Output();
+            
         }
 
-        static Settings CreateSettings(string[] args)
+        Settings CreateSettings(string[] args)
         {
             var settings = new Settings();
             if (File.Exists(args[0]) == false) return null;
             settings.TargetFilePath = args[0];
 
-            for (int i = 1; i < args.Length; i=i+2)
+            for (int i = 1; i < args.Length; i = i + 2)
             {
                 switch (args[i])
                 {
                     case "-d":
-                        Program.DiffParam(settings,args[i + 1]);
-                        break;
-
                     case "--diff":
-                        Program.DiffParam(settings, args[i + 1]);
+                        this.DiffParam(settings, args[i + 1]);
                         break;
 
                     case "-n":
-                        throw new NotImplementedException();
-                        break;
-
                     case "-normal":
                         throw new NotImplementedException();
+                    //break;
+
+                    case "-e":
+                    case "--encoding":
+                        settings.Encoding = Encoding.GetEncoding(args[i + 1]);
+                        break;
+
+                    case "-o":
+                    case "--output":
+                        settings.OutputMethod = args[i + 1];
                         break;
 
                     default:
-                        ShowHelp();
                         settings = null;
                         break;
                 }
@@ -80,8 +103,7 @@ namespace vlookup
             return settings;
         }
 
-
-        static void DiffParam(Settings settings,string param)
+        void DiffParam(Settings settings, string param)
         {
             var paramList = param.Split(",");
             if (paramList.Length != 3) return;
@@ -96,10 +118,11 @@ namespace vlookup
             };
         }
 
-        static void ShowHelp()
+        void ShowHelp()
         {
             StringBuilder builder = new StringBuilder();
-            builder.AppendLine("aaaaaa");
+            builder.AppendLine("いずれHelp情報書きます。");
+            builder.AppendLine("-d --diff 列番号,比較対象のfilePath[,区切り文字列]");
             Console.Write(builder.ToString());
         }
     }

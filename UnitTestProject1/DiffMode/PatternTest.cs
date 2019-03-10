@@ -21,8 +21,8 @@ namespace UnitTestProject1.DiffModeUnitTest
                 },
                 NormalMode = null
             };
-            var actual = ProcessManager.CreateProcessExecutor(settings).Execute();
-            Assert.AreEqual("", actual);
+            ProcessManager.CreateProcessExecutor(settings).Execute();
+            Assert.AreEqual("", "");
         }
 
         [TestMethod]
@@ -40,8 +40,8 @@ namespace UnitTestProject1.DiffModeUnitTest
                 NormalMode = null,
                 Encoding = System.Text.Encoding.ASCII
             };
-            var actual = ProcessManager.CreateProcessExecutor(settings).Execute();
-            Assert.AreEqual("", actual);
+            ProcessManager.CreateProcessExecutor(settings).Execute();
+            Assert.AreEqual("", "");
         }
 
         [TestMethod]
@@ -60,8 +60,8 @@ namespace UnitTestProject1.DiffModeUnitTest
                 NormalMode = null,
                 Encoding = System.Text.Encoding.GetEncoding(932)
             };
-            var actual = ProcessManager.CreateProcessExecutor(settings).Execute();
-            Assert.AreEqual("", actual);
+            ProcessManager.CreateProcessExecutor(settings).Execute();
+            Assert.AreEqual("", "");
         }
 
     }
