@@ -75,7 +75,7 @@
             });
 
 
-            return (builder.ToString(), $"解析が完了しました。\r\n {collisionCount}件の違いが検出されました。");
+            return (builder.ToString(), $"{collisionCount}件の違いが検出されました。");
         }
 
         private bool CheckCols(List<string> file1, List<string> file2, string[] patterns)

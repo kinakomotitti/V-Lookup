@@ -22,21 +22,26 @@ namespace vlookup
         {
             var inputData = this.ConvertInputDataToObject(this.settings.TargetFilePath);
 
+            //検索範囲設定
             var startIndex = 0;
-            var endIndex = inputData.Count-1;
+            var endIndex = inputData.Count;
             var counter = 0;
             if (this.settings.NormalMode.TargetRowNumber != null)
             {
-                startIndex = int.Parse(this.settings.NormalMode.TargetRowNumber.Split(":")[0])-1;
-                endIndex = int.Parse(this.settings.NormalMode.TargetRowNumber.Split(":")[1])-1;
+                var param = int.Parse(this.settings.NormalMode.TargetRowNumber.Split(":")[0]) - 1;
+                startIndex = param > endIndex ? endIndex : param;
+
+                param = int.Parse(this.settings.NormalMode.TargetRowNumber.Split(":")[1]) - 1;
+                endIndex = param > endIndex ? endIndex : param;
             }
 
+            //検索実行
             var builder = new StringBuilder();
             for (int i = startIndex; i < endIndex; i++)
             {
-                if (inputData[i][int.Parse(this.settings.NormalMode.TargetColNumber)-1] == this.settings.NormalMode.SearchString)
+                if (inputData[i][int.Parse(this.settings.NormalMode.TargetColNumber) - 1] == this.settings.NormalMode.SearchString)
                 {
-                    builder.AppendLine(string.Join(",",inputData[i]));
+                    builder.AppendLine(string.Join(",", inputData[i]));
                     counter++;
                 }
 
@@ -44,7 +49,6 @@ namespace vlookup
 
             this.settings.ResultString = builder.ToString();
             this.settings.ResultSummry = $"{counter}件のデータが検出されました。";
-            
         }
     }
 }

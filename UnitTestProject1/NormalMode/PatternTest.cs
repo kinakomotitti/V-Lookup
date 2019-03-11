@@ -8,8 +8,9 @@ namespace UnitTestProject1.NormalModeUnitTest
     public class PatternTest
     {
         [TestMethod]
-        public void TestMethod1()
+        public void test003が1列目に存在する()
         {
+            //一行目にtest003がある行を出力。
             Settings settings = new Settings()
             {
                 TargetFilePath = "./../../../../SampleData/file1.csv",
@@ -21,50 +22,88 @@ namespace UnitTestProject1.NormalModeUnitTest
                 }
             };
             ProcessManager.CreateProcessExecutor(settings).Execute();
-
             var actual = settings.ResultSummry;
             Assert.AreEqual("1件のデータが検出されました。", actual);
         }
 
         [TestMethod]
-        public void TestMethod2()
+        public void aが2列目に存在する()
         {
+            //一行目にtest003がある行を出力。
             Settings settings = new Settings()
             {
-                TargetFilePath = "./../../../../SampleData/typeA-1.csv",
-                DiffMode = new DiffMode()
+                TargetFilePath = "./../../../../SampleData/file1.csv",
+                DiffMode = null,
+                NormalMode = new NormalMode()
                 {
-                    TargetFilePath = "./../../../../SampleData/typeA-2.csv",
-                    PrimaryKeyCols = "3".Split(","),
-                    ConpareTargetCols = "4".Split(",")
-                },
-                NormalMode = null,
-                Encoding = System.Text.Encoding.ASCII
+                    SearchString = "a",
+                    TargetColNumber = "2"
+                }
             };
             ProcessManager.CreateProcessExecutor(settings).Execute();
-            Assert.AreEqual("", "");
+            var actual = settings.ResultSummry;
+            Assert.AreEqual("5件のデータが検出されました。", actual);
         }
 
         [TestMethod]
-        public void TestMethod3()
+        public void test003が1から2行目の1列目に存在しない()
         {
-            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
             Settings settings = new Settings()
             {
-                TargetFilePath = "./../../../../SampleData/typeB-1.csv",
-                DiffMode = new DiffMode()
+                TargetFilePath = "./../../../../SampleData/file1.csv",
+                DiffMode = null,
+                NormalMode = new NormalMode()
                 {
-                    TargetFilePath = "./../../../../SampleData/typeB-2.csv",
-                    PrimaryKeyCols = "3".Split(","),
-                    ConpareTargetCols = "4".Split(",")
-                },
-                NormalMode = null,
-                Encoding = System.Text.Encoding.GetEncoding(932)
+                    SearchString = "test003",
+                    TargetColNumber = "1",
+                    TargetRowNumber="1:2"
+
+                }
             };
             ProcessManager.CreateProcessExecutor(settings).Execute();
-            Assert.AreEqual("", "");
+            var actual = settings.ResultSummry;
+            Assert.AreEqual("0件のデータが検出されました。", actual);
         }
 
+        [TestMethod]
+        public void test003が４から１０行目の1列目に存在しない()
+        {
+            Settings settings = new Settings()
+            {
+                TargetFilePath = "./../../../../SampleData/file1.csv",
+                DiffMode = null,
+                NormalMode = new NormalMode()
+                {
+                    SearchString = "test003",
+                    TargetColNumber = "1",
+                    TargetRowNumber = "4:10"
+
+                }
+            };
+            ProcessManager.CreateProcessExecutor(settings).Execute();
+            var actual = settings.ResultSummry;
+            Assert.AreEqual("0件のデータが検出されました。", actual);
+        }
+
+        [TestMethod]
+        public void test003が１０から１０行目の1列目に存在しない()
+        {
+            Settings settings = new Settings()
+            {
+                TargetFilePath = "./../../../../SampleData/file1.csv",
+                DiffMode = null,
+                NormalMode = new NormalMode()
+                {
+                    SearchString = "test003",
+                    TargetColNumber = "1",
+                    TargetRowNumber = "10:10"
+
+                }
+            };
+            ProcessManager.CreateProcessExecutor(settings).Execute();
+            var actual = settings.ResultSummry;
+            Assert.AreEqual("0件のデータが検出されました。", actual);
+        }
     }
 }
 

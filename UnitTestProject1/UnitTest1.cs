@@ -8,7 +8,7 @@ namespace UnitTestProject1
     public class SampleUnitTest
     {
         [TestMethod]
-        public void TestMethod1()
+        public void SampleTestMethod()
         {
             Settings settings = new Settings()
             {
@@ -21,45 +21,6 @@ namespace UnitTestProject1
                 },
                 NormalMode = null
             };
-            ProcessManager.CreateProcessExecutor(settings).Execute();
-            Assert.AreEqual("", "");
-        }
-
-        [TestMethod]
-        public void TestMethod2()
-        {
-            Settings settings = new Settings()
-            {
-                TargetFilePath = "./../../../../SampleData/typeA-1.csv",
-                DiffMode = new DiffMode()
-                {
-                    TargetFilePath = "./../../../../SampleData/typeA-2.csv",
-                    PrimaryKeyCols = "3".Split(","),
-                    ConpareTargetCols = "4".Split(",")
-                },
-                NormalMode = null,
-                Encoding = System.Text.Encoding.ASCII
-            };
-            ProcessManager.CreateProcessExecutor(settings).Execute();
-            Assert.AreEqual("", "");
-        }
-
-        [TestMethod]
-        public void TestMethod3()
-        {
-            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-            Settings settings = new Settings()
-            {
-                TargetFilePath = "./../../../../SampleData/typeB-1.csv",
-                DiffMode = new DiffMode()
-                {
-                    TargetFilePath = "./../../../../SampleData/typeB-2.csv",
-                    PrimaryKeyCols = "3".Split(","),
-                    ConpareTargetCols = "4".Split(",")
-                },
-                NormalMode = null,
-                Encoding = System.Text.Encoding.GetEncoding(932)
-        };
             ProcessManager.CreateProcessExecutor(settings).Execute();
             Assert.AreEqual("", "");
         }

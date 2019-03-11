@@ -24,7 +24,8 @@
                 NormalMode = null
             };
             ProcessManager.CreateProcessExecutor(settings).Execute();
-            Assert.AreEqual("", "");
+            var actual = settings.ResultSummry;
+            Assert.AreEqual("2件の違いが検出されました。", actual);
         }
 
         [TestMethod]
@@ -43,7 +44,8 @@
                 Encoding = System.Text.Encoding.ASCII
             };
             ProcessManager.CreateProcessExecutor(settings).Execute();
-            Assert.AreEqual("", "");
+            var actual = settings.ResultSummry;
+            Assert.AreEqual("2件の違いが検出されました。", actual);
         }
     }
 }

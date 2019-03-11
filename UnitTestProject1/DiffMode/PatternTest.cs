@@ -22,7 +22,8 @@ namespace UnitTestProject1.DiffModeUnitTest
                 NormalMode = null
             };
             ProcessManager.CreateProcessExecutor(settings).Execute();
-            Assert.AreEqual("", "");
+            var actual = settings.ResultSummry;
+            Assert.AreEqual("2件の違いが検出されました。", actual);
         }
 
         [TestMethod]
@@ -41,7 +42,8 @@ namespace UnitTestProject1.DiffModeUnitTest
                 Encoding = System.Text.Encoding.ASCII
             };
             ProcessManager.CreateProcessExecutor(settings).Execute();
-            Assert.AreEqual("", "");
+            var actual = settings.ResultSummry;
+            Assert.AreEqual("2件の違いが検出されました。", actual);
         }
 
         [TestMethod]
@@ -61,7 +63,8 @@ namespace UnitTestProject1.DiffModeUnitTest
                 Encoding = System.Text.Encoding.GetEncoding(932)
             };
             ProcessManager.CreateProcessExecutor(settings).Execute();
-            Assert.AreEqual("", "");
+            var actual = settings.ResultSummry;
+            Assert.AreEqual("1件の違いが検出されました。", actual);
         }
 
     }
