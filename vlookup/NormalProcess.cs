@@ -35,6 +35,11 @@ namespace vlookup
                 endIndex = param > endIndex ? endIndex : param;
             }
 
+            if (int.Parse(this.settings.NormalMode.TargetColNumber) > inputData[0].Count)
+            {
+                return;
+            }
+
             //検索実行
             var builder = new StringBuilder();
             for (int i = startIndex; i < endIndex; i++)

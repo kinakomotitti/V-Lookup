@@ -64,7 +64,7 @@
             ProcessManager.CreateProcessExecutor(settings).Execute();
 
             OutputManager.CreateOutputExecutor(settings).Output();
-            
+
         }
 
         /// <summary>
@@ -89,8 +89,8 @@
 
                     case "-n":
                     case "-normal":
-                        throw new NotImplementedException();
-                    //break;
+                        this.NormalParam(settings, args[i + 1]);
+                        break;
 
                     case "-e":
                     case "--encoding":
@@ -109,6 +109,24 @@
             }
 
             return settings;
+        }
+
+        /// <summary>
+        /// NormalMode用のSettingインスタンスの作成処理
+        /// </summary>
+        /// <param name="settings"></param>
+        /// <param name="param"></param>
+        void NormalParam(Settings settings, string param)
+        {
+            var paramList = param.Split(",");
+            if (paramList.Length < 2) return;
+            settings.DiffMode = null;
+            settings.NormalMode = new NormalMode()
+            {
+                SearchString = paramList[0],
+                TargetColNumber = paramList[1],
+                TargetRowNumber = (paramList.Length == 3) ? paramList[2] : null
+            };
         }
 
         /// <summary>

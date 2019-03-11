@@ -25,7 +25,7 @@
 
         public void Output()
         {
-            Console.WriteLine($"{this.settings.ResultSummry}\r\n");
+            Console.WriteLine($"{this.settings.ResultSummry}");
             
             switch (this.settings.OutputMethod.ToLower())
             {
@@ -35,7 +35,7 @@
 
                 case "console":
                 default:
-                    Console.WriteLine($"{this.settings.ResultString}\r\n");
+                    Console.WriteLine($"{this.settings.ResultString}");
                     break;
             }
         }
