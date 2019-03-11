@@ -20,5 +20,19 @@
 
 
         public abstract void Execute();
+
+        protected List<List<string>> ConvertInputDataToObject(string inputDataPath)
+        {
+            var data = new List<List<string>>();
+            File.ReadAllLines(inputDataPath, this.settings.Encoding)
+               .ToList<string>()
+               .ForEach(item =>
+               {
+                   var row = new List<string>();
+                   item.Split(',').ToList().ForEach(param => row.Add(param));
+                   data.Add(row);
+               });
+            return data;
+        }
     }
 }

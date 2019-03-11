@@ -16,8 +16,4 @@
     <ProjectReference Include="..\vlookup\vlookup.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="NormalMode\" />
-  </ItemGroup>
-
 </Project>

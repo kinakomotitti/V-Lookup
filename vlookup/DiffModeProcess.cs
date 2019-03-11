@@ -45,20 +45,6 @@
 
         #region privateMethod
 
-        private List<List<string>> ConvertInputDataToObject(string inputDataPath)
-        {
-            var data = new List<List<string>>();
-            File.ReadAllLines(inputDataPath, this.settings.Encoding)
-               .ToList<string>()
-               .ForEach(item =>
-               {
-                   var row = new List<string>();
-                   item.Split(',').ToList().ForEach(param => row.Add(param));
-                   data.Add(row);
-               });
-            return data;
-        }
-
         private (string, string) ConpareList(List<List<string>> file1Data, List<List<string>> file2Data)
         {
             StringBuilder builder = new StringBuilder();

@@ -37,7 +37,9 @@
 
     public class NormalMode
     {
-
+        public string SearchString { get; set; }
+        public string TargetColNumber { get; set; }
+        public string TargetRowNumber { get; set; } 
     }
 
     public class DiffMode

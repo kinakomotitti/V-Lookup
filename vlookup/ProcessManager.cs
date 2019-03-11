@@ -16,8 +16,7 @@ namespace vlookup
             }
             else
             {
-                process = null;
-                throw new NotImplementedException();
+                process = new NormalProcess(settings);
             }
             
             return process;

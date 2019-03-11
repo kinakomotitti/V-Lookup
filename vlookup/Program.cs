@@ -145,7 +145,7 @@
             builder.AppendLine("");
             builder.AppendLine("--help, ヘルプ情報を表示します。");
             builder.AppendLine("");
-            builder.AppendLine("--normal -n, 検索値,列番号[,範囲]]");
+            builder.AppendLine("--normal -n, 検索値,列番号[,範囲]");
             builder.AppendLine("\t 検索値 \t 検索対象の文字列を指定します");
             builder.AppendLine("\t 列番号 \t 検索値を検索する範囲（列）を指定します");
             builder.AppendLine("\t 範囲 　\t 省略可。検索値を検索する範囲（行）を指定します");
