@@ -6,7 +6,7 @@
     using System.Text;
     #endregion
 
-    class CoreProgram
+    class ProgramCore
     {
         #region Main
 
@@ -14,19 +14,19 @@
         /// メイン処理
         /// </summary>
         /// <param name="args"></param>
-        public static void Main(string[] args)
+        public static void MainCore(string[] args)
         {
-            new CoreProgram().MainCore(args);
+            new ProgramCore().MainPrivate(args);
         }
 
-        void MainCore(string[] args)
+        void MainPrivate(string[] args)
         {
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 
             var settings = this.CreateSettings(args);
             if (settings == null)
             {
-                CoreProgram.ShowHelp();
+                ProgramCore.ShowHelp();
                 return;
             }
 

@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
-
-namespace vlookup
+﻿namespace vlookup.Mode
 {
+    #region using
+    using System.Text;
+    #endregion
+
     class NormalProcess : BaseProcess
     {
 

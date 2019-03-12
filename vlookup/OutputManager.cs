@@ -2,9 +2,7 @@
 {
     #region using
     using System;
-    using System.Collections.Generic;
     using System.IO;
-    using System.Text;
     #endregion
 
     class OutputManager

@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace vlookup
+﻿namespace vlookup
 {
+    #region using
+    using vlookup.Mode;
+    #endregion
+
     public static class ProcessManager
     {
         public static BaseProcess CreateProcessExecutor(Settings settings)
