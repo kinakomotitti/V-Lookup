@@ -1,9 +1,11 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Text;
-using vlookup;
-
-namespace UnitTestProject1.NormalModeUnitTest
+﻿namespace UnitTestProject1.ProcessManager.NormalModeUnitTest
 {
+    #region using
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System.Text;
+    using vlookup;
+    #endregion
+
     [TestClass]
     public class PatternTest
     {

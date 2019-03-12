@@ -3,41 +3,34 @@
     #region using
     using System;
     using System.IO;
+    using vlookup.Output;
     #endregion
 
-    class OutputManager
+    public class OutputManager
     {
         private Settings settings { get; set; }
-
-        public static OutputManager CreateOutputExecutor(Settings settings)
-        {
-            return new OutputManager(settings);
-        }
 
         private OutputManager(Settings settings)
         {
             this.settings = settings;
         }
 
-        #region 出力処理
-
-        public void Output()
+        public static BaseOutput CreateOutputExecutor(Settings settings)
         {
-            Console.WriteLine($"{this.settings.ResultSummry}");
-            
-            switch (this.settings.OutputMethod.ToLower())
+            BaseOutput output = null;
+            switch (settings.OutputMethod.ToLower())
             {
                 case "file":
-                    File.WriteAllText($"{DateTime.Now.ToString("yyyyMMddhhmmss")}_output.csv",this.settings.ResultString,this.settings.Encoding);
+                    output = new FileOutput(settings);
                     break;
 
                 case "console":
                 default:
-                    Console.WriteLine($"{this.settings.ResultString}");
+                    output = new ConsoleOutput(settings);
                     break;
             }
-        }
 
-        #endregion
+            return output;
+        }
     }
 }

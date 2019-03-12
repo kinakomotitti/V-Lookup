@@ -32,7 +32,7 @@
 
             ProcessManager.CreateProcessExecutor(settings).Execute();
 
-            OutputManager.CreateOutputExecutor(settings).Output();
+            OutputManager.CreateOutputExecutor(settings).OutputExecute();
         }
 
         #endregion

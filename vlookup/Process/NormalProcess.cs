@@ -1,4 +1,4 @@
-﻿namespace vlookup.Mode
+﻿namespace vlookup.Process
 {
     #region using
     using System.Text;

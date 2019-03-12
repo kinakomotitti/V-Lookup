@@ -1,7 +1,7 @@
 ﻿namespace vlookup
 {
     #region using
-    using vlookup.Mode;
+    using vlookup.Process;
     #endregion
 
     public static class ProcessManager

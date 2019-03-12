@@ -1,4 +1,4 @@
-﻿namespace UnitTestProject1.DiffModeUnitTest
+﻿namespace UnitTestProject1.ProcessManager.DiffModeUnitTest
 {
     #region using
     using Microsoft.VisualStudio.TestTools.UnitTesting;

@@ -1,9 +1,11 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Text;
-using vlookup;
-
 namespace UnitTestProject1
 {
+    #region using
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System.Text;
+    using vlookup;
+    #endregion
+
     [TestClass]
     public class SampleUnitTest
     {
@@ -21,7 +23,6 @@ namespace UnitTestProject1
                 },
                 NormalMode = null
             };
-            ProcessManager.CreateProcessExecutor(settings).Execute();
             Assert.AreEqual("", "");
         }
     }
