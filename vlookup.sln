@@ -13,6 +13,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SampleData", "SampleData", 
 		SampleData\typeA-2.csv = SampleData\typeA-2.csv
 		SampleData\typeB-1.csv = SampleData\typeB-1.csv
 		SampleData\typeB-2.csv = SampleData\typeB-2.csv
+		SampleData\typeC_sjis.csv = SampleData\typeC_sjis.csv
+		SampleData\typeC_utf8.csv = SampleData\typeC_utf8.csv
+		SampleData\typeD.csv = SampleData\typeD.csv
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTestProject1", "UnitTestProject1\UnitTestProject1.csproj", "{F3B017D4-4146-46A7-9987-AA928B08FC14}"

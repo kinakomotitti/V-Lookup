@@ -1,7 +1,9 @@
 ﻿namespace vlookup.Process
 {
+    using System;
     #region using
     using System.Text;
+    using System.Text.RegularExpressions;
     #endregion
 
     class NormalProcess : BaseProcess
@@ -43,12 +45,20 @@
             var builder = new StringBuilder();
             for (int i = startIndex; i < endIndex; i++)
             {
-                if (inputData[i][int.Parse(this.settings.NormalMode.TargetColNumber) - 1] == this.settings.NormalMode.SearchString)
+                string pattern = this.settings.NormalMode.SearchString;
+                string input = inputData[i][int.Parse(this.settings.NormalMode.TargetColNumber) - 1]; 
+                try
                 {
-                    builder.AppendLine(string.Join(",", inputData[i]));
-                    counter++;
+                    if (Regex.IsMatch(input, pattern))
+                    {
+                        builder.AppendLine(string.Join(",", inputData[i]));
+                        counter++;
+                    }
                 }
-
+                catch (System.Exception ex)
+                {
+                    builder.Append($"{i}行目で{ex.GetBaseException().Message}のエラーが発生");
+                }
             }
 
             this.settings.ResultString = builder.ToString();

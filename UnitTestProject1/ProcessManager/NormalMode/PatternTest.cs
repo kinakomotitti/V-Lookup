@@ -2,6 +2,7 @@
 {
     #region using
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System;
     using System.Text;
     using vlookup;
     #endregion
@@ -105,6 +106,27 @@
             ProcessManager.CreateProcessExecutor(settings).Execute();
             var actual = settings.ResultSummry;
             Assert.AreEqual("0件のデータが検出されました。", actual);
+        }
+
+        [TestMethod]
+        public void 正規表現をつかって検索ができること()
+        {
+            Settings settings = new Settings()
+            {
+                TargetFilePath = "./../../../../SampleData/typeC_utf8.csv",
+                DiffMode = null,
+                NormalMode = new NormalMode()
+                {
+                    SearchString = ".*5日",
+                    TargetColNumber = "1",
+                    TargetRowNumber = "1:99"
+                }
+            };
+            ProcessManager.CreateProcessExecutor(settings).Execute();
+            var actual = settings.ResultSummry;
+
+            Assert.AreEqual("4件のデータが検出されました。", actual);
+
         }
     }
 }
