@@ -4,7 +4,7 @@ using System.Text;
 
 namespace vlookup.Output
 {
-    class ConsoleOutput : BaseOutput
+    public class ConsoleOutput : BaseOutput
     {
         public ConsoleOutput(Settings settings) : base(settings) { }
 

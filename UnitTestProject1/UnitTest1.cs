@@ -10,7 +10,7 @@ namespace UnitTestProject1
     public class SampleUnitTest
     {
         [TestMethod]
-        public void SampleTestMethod()
+        public void TemplateMethod()
         {
             Settings settings = new Settings()
             {

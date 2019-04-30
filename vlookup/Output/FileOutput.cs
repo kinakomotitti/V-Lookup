@@ -5,7 +5,7 @@
     using System.IO;
     #endregion
 
-    class FileOutput : BaseOutput
+    public class FileOutput : BaseOutput
     {
         public FileOutput(Settings settings) : base(settings) { }
         
